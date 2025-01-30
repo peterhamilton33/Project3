@@ -3,9 +3,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+//Peter Hamilton 001
 
 namespace FoodBankInventory
 {
+    //FoodItem Class
+    //Properties representing food item details
     public class FoodItem
     {
         public string Name { get; set; }
@@ -23,7 +26,7 @@ namespace FoodBankInventory
             Quantity = quantity;
             ExpirationDate = expirationDate;
         }
-
+        //Format object output as a string
         public override string ToString()
         {
             return $"{Name} ({Category}) - {Quantity} units - Expires on {ExpirationDate:yyyy-MM-dd}";
@@ -32,6 +35,7 @@ namespace FoodBankInventory
 
     public class Program
     {
+        //list to store the food inventory
         private static List<FoodItem> inventory = new List<FoodItem>();
 
         public static void Main(string[] args)
@@ -86,7 +90,8 @@ namespace FoodBankInventory
 
                 Console.Write("Enter Expiration Date (yyyy-MM-dd): ");
                 DateTime expirationDate = DateTime.Parse(Console.ReadLine());
-
+                
+                //Add new food item to inventory list
                 inventory.Add(new FoodItem(name, category, quantity, expirationDate));
                 Console.WriteLine("Food item added successfully!");
             }
@@ -114,6 +119,7 @@ namespace FoodBankInventory
             Console.Write("Enter the number of the item to delete: ");
             if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= inventory.Count)
             {
+                //Remove selected food item from inventory
                 inventory.RemoveAt(index - 1);
                 Console.WriteLine("Food item deleted successfully!");
             }
@@ -136,6 +142,7 @@ namespace FoodBankInventory
             }
             else
             {
+                //Display all food items in the inventory
                 for (int i = 0; i < inventory.Count; i++)
                 {
                     Console.WriteLine($"{i + 1}. {inventory[i]}");
